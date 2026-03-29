@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -12,161 +11,91 @@
   --bg: #080808; --surface: #111111; --surface2: #171717;
   --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
   --text: #F5F3EE; --text2: #888480; --text3: #444;
-  --accent: #C8F55A; --accent2: rgba(200,245,90,0.1); --accent3: rgba(200,245,90,0.05);
+  --accent: #C8F55A; --accent2: rgba(200,245,90,0.1);
   --green: #4ADE80; --red: #FF5F5F;
 }
 body { background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--text); min-height: 100vh; }
 body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(200,245,90,0.04) 0%, transparent 60%); pointer-events: none; }
-
-/* VIEWS */
 #survey-view, #admin-view { display: none; }
 #survey-view.active, #admin-view.active { display: block; }
-
-/* ── SURVEY ── */
 .survey-wrap { max-width: 560px; margin: 0 auto; padding: 48px 16px 80px; }
 .top-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
 .brand { display: flex; align-items: center; gap: 10px; }
-.brand-mark { width: 32px; height: 32px; background: var(–accent); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-family: ‘Syne’, sans-serif; font-weight: 800; font-size: 14px; color: #080808; }
-.brand-name { font-family: ‘Syne’, sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.3px; }
+.brand-mark { width: 32px; height: 32px; background: var(--accent); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 14px; color: #080808; }
+.brand-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; letter-spacing: -0.3px; }
 .progress-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-.progress-label { font-size: 11px; color: var(–text2); }
-.progress-bar-outer { width: 100px; height: 3px; background: var(–border2); border-radius: 2px; overflow: hidden; }
-.progress-bar-inner { height: 100%; background: var(–accent); border-radius: 2px; transition: width 0.4s ease; }
-
+.progress-label { font-size: 11px; color: var(--text2); }
+.progress-bar-outer { width: 100px; height: 3px; background: var(--border2); border-radius: 2px; overflow: hidden; }
+.progress-bar-inner { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s ease; }
 .step { display: none; animation: fadeUp 0.4s ease both; }
 .step.active { display: block; }
-.step-eyebrow { font-size: 11px; color: var(–accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
-.step-title { font-family: ‘Syne’, sans-serif; font-size: 26px; font-weight: 800; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 8px; }
-.step-sub { font-size: 14px; color: var(–text2); line-height: 1.6; margin-bottom: 32px; }
-
+.step-eyebrow { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+.step-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 8px; }
+.step-sub { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 32px; }
 .options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-.option-card { background: var(–surface); border: 1.5px solid var(–border); border-radius: 14px; padding: 16px 18px; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 14px; user-select: none; }
-.option-card:hover { border-color: var(–border2); background: var(–surface2); }
-.option-card.selected { border-color: var(–accent); background: var(–accent2); }
-.option-check { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(–border2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
-.option-card.selected .option-check { background: var(–accent); border-color: var(–accent); }
-.option-card.selected .option-check::after { content: ‘✓’; font-size: 11px; color: #080808; font-weight: 700; }
+.option-card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 16px 18px; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 14px; user-select: none; }
+.option-card:hover { border-color: var(--border2); background: var(--surface2); }
+.option-card.selected { border-color: var(--accent); background: var(--accent2); }
+.option-check { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--border2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.option-card.selected .option-check { background: var(--accent); border-color: var(--accent); }
+.option-card.selected .option-check::after { content: '✓'; font-size: 11px; color: #080808; font-weight: 700; }
 .option-emoji { font-size: 20px; }
 .option-text { flex: 1; }
-.option-label { font-size: 14px; font-weight: 500; color: var(–text); }
-.option-desc { font-size: 12px; color: var(–text2); margin-top: 2px; }
-
+.option-label { font-size: 14px; font-weight: 500; color: var(--text); }
+.option-desc { font-size: 12px; color: var(--text2); margin-top: 2px; }
 .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 32px; }
-.option-chip { background: var(–surface); border: 1.5px solid var(–border); border-radius: 12px; padding: 14px 12px; cursor: pointer; text-align: center; transition: all 0.15s; user-select: none; }
-.option-chip:hover { border-color: var(–border2); }
-.option-chip.selected { border-color: var(–accent); background: var(–accent2); }
+.option-chip { background: var(--surface); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 12px; cursor: pointer; text-align: center; transition: all 0.15s; user-select: none; }
+.option-chip.selected { border-color: var(--accent); background: var(--accent2); }
 .chip-emoji { font-size: 22px; margin-bottom: 6px; }
-.chip-label { font-size: 13px; font-weight: 500; color: var(–text); }
-
+.chip-label { font-size: 13px; font-weight: 500; color: var(--text); }
 .scale-wrap { margin-bottom: 32px; }
-.scale-labels { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 12px; color: var(–text2); }
+.scale-labels { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 12px; color: var(--text2); }
 .scale-options { display: flex; gap: 6px; }
-.scale-btn { flex: 1; aspect-ratio: 1; background: var(–surface); border: 1.5px solid var(–border); border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(–text2); transition: all 0.15s; font-family: ‘Syne’, sans-serif; }
-.scale-btn:hover { border-color: var(–border2); color: var(–text); }
-.scale-btn.selected { background: var(–accent); border-color: var(–accent); color: #080808; }
-
-.text-input { width: 100%; background: var(–surface); border: 1.5px solid var(–border2); border-radius: 14px; padding: 16px 18px; color: var(–text); font-size: 15px; font-family: ‘DM Sans’, sans-serif; outline: none; resize: none; margin-bottom: 32px; min-height: 100px; transition: border-color 0.2s; line-height: 1.6; }
-.text-input:focus { border-color: var(–accent); }
-.text-input::placeholder { color: var(–text3); }
-.text-field { width: 100%; background: var(–surface); border: 1.5px solid var(–border2); border-radius: 14px; padding: 16px 18px; color: var(–text); font-size: 15px; font-family: ‘DM Sans’, sans-serif; outline: none; margin-bottom: 12px; transition: border-color 0.2s; }
-.text-field:focus { border-color: var(–accent); }
-.text-field::placeholder { color: var(–text3); }
-
+.scale-btn { flex: 1; aspect-ratio: 1; background: var(--surface); border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: var(--text2); transition: all 0.15s; font-family: 'Syne', sans-serif; }
+.scale-btn.selected { background: var(--accent); border-color: var(--accent); color: #080808; }
+.text-input { width: 100%; background: var(--surface); border: 1.5px solid var(--border2); border-radius: 14px; padding: 16px 18px; color: var(--text); font-size: 15px; font-family: 'DM Sans', sans-serif; outline: none; resize: none; margin-bottom: 32px; min-height: 100px; line-height: 1.6; }
+.text-input:focus { border-color: var(--accent); }
+.text-input::placeholder { color: var(--text3); }
+.text-field { width: 100%; background: var(--surface); border: 1.5px solid var(--border2); border-radius: 14px; padding: 16px 18px; color: var(--text); font-size: 15px; font-family: 'DM Sans', sans-serif; outline: none; margin-bottom: 12px; }
+.text-field:focus { border-color: var(--accent); }
+.text-field::placeholder { color: var(--text3); }
 .btn-row { display: flex; gap: 10px; }
-.btn-back { width: 52px; height: 52px; border-radius: 14px; border: 1.5px solid var(–border2); background: transparent; color: var(–text2); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; }
-.btn-back:hover { border-color: var(–text2); color: var(–text); }
-.btn-next { flex: 1; height: 52px; background: var(–accent); color: #080808; border: none; border-radius: 14px; font-family: ‘Syne’, sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
-.btn-submit { width: 100%; height: 56px; background: var(–accent); color: #080808; border: none; border-radius: 16px; font-family: ‘Syne’, sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 8px; }
-.notice { background: var(–accent2); border: 1px solid rgba(200,245,90,0.2); border-radius: 12px; padding: 14px 16px; font-size: 13px; color: rgba(200,245,90,0.8); margin-bottom: 24px; line-height: 1.5; }
-
-/* THANK YOU */
+.btn-back { width: 52px; height: 52px; border-radius: 14px; border: 1.5px solid var(--border2); background: transparent; color: var(--text2); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.btn-next { flex: 1; height: 52px; background: var(--accent); color: #080808; border: none; border-radius: 14px; font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
+.btn-submit { width: 100%; height: 56px; background: var(--accent); color: #080808; border: none; border-radius: 16px; font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 8px; }
+.notice { background: var(--accent2); border: 1px solid rgba(200,245,90,0.2); border-radius: 12px; padding: 14px 16px; font-size: 13px; color: rgba(200,245,90,0.8); margin-bottom: 24px; line-height: 1.5; }
 .thankyou { text-align: center; padding: 48px 0; }
-.ty-icon { width: 72px; height: 72px; background: var(–accent); border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 24px; box-shadow: 0 0 40px rgba(200,245,90,0.2); }
-.ty-title { font-family: ‘Syne’, sans-serif; font-size: 28px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.5px; }
-.ty-sub { font-size: 15px; color: var(–text2); line-height: 1.6; max-width: 360px; margin: 0 auto 32px; }
-.ty-arabic { font-size: 32px; color: var(–accent); margin-bottom: 6px; opacity: 0.6; }
-.ty-arabic-text { font-size: 12px; color: var(–text3); }
-
-/* ── ADMIN ── */
-.admin-wrap { max-width: 800px; margin: 0 auto; padding: 48px 16px 80px; }
-.admin-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: gap; gap: 12px; }
-.admin-title { font-family: ‘Syne’, sans-serif; font-size: 24px; font-weight: 800; }
-.admin-back { padding: 10px 18px; border: 1.5px solid var(–border2); border-radius: 10px; background: transparent; color: var(–text2); font-size: 13px; cursor: pointer; font-family: ‘DM Sans’, sans-serif; }
-.admin-back:hover { color: var(–text); border-color: var(–text2); }
-
-.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 32px; }
-.stat-card { background: var(–surface); border: 1px solid var(–border); border-radius: 14px; padding: 18px; }
-.stat-val { font-family: ‘Syne’, sans-serif; font-size: 32px; font-weight: 800; color: var(–accent); margin-bottom: 4px; }
-.stat-lbl { font-size: 12px; color: var(–text2); text-transform: uppercase; letter-spacing: 1px; }
-
-.response-list { display: flex; flex-direction: column; gap: 12px; }
-.response-card { background: var(–surface); border: 1px solid var(–border); border-radius: 14px; padding: 20px; }
-.response-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.response-num { font-family: ‘Syne’, sans-serif; font-size: 13px; font-weight: 700; color: var(–accent); }
-.response-time { font-size: 11px; color: var(–text3); }
-.response-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-.response-field { background: var(–surface2); border-radius: 10px; padding: 10px 12px; }
-.response-key { font-size: 10px; color: var(–text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
-.response-val { font-size: 13px; color: var(–text); font-weight: 500; }
-.response-open { background: var(–surface2); border-radius: 10px; padding: 12px; font-size: 13px; color: var(–text2); line-height: 1.5; font-style: italic; }
-.response-open strong { color: var(–accent); font-style: normal; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px; }
-
-.empty-state { text-align: center; padding: 64px 24px; color: var(–text2); }
-.empty-icon { font-size: 48px; margin-bottom: 16px; }
-.empty-title { font-family: ‘Syne’, sans-serif; font-size: 18px; font-weight: 700; color: var(–text); margin-bottom: 8px; }
-
-.switch-link { font-size: 12px; color: var(–text3); text-align: center; margin-top: 48px; }
-.switch-link span { color: var(–accent); cursor: pointer; }
-
-.clear-btn { padding: 8px 14px; border: 1px solid rgba(255,95,95,0.3); border-radius: 8px; background: transparent; color: var(–red); font-size: 12px; cursor: pointer; font-family: ‘DM Sans’, sans-serif; }
-
+.ty-icon { width: 72px; height: 72px; background: var(--accent); border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 24px; box-shadow: 0 0 40px rgba(200,245,90,0.2); }
+.ty-title { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; margin-bottom: 12px; }
+.ty-sub { font-size: 15px; color: var(--text2); line-height: 1.6; max-width: 360px; margin: 0 auto 32px; }
+.ty-arabic { font-size: 32px; color: var(--accent); margin-bottom: 6px; opacity: 0.6; }
+.ty-arabic-text { font-size: 12px; color: var(--text3); }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 </style>
-
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════ -->
-
-<!--  SURVEY VIEW                              -->
-
-<!-- ══════════════════════════════════════════ -->
-
 <div id="survey-view" class="active">
 <div class="survey-wrap">
-
   <div class="top-bar">
-    <div class="brand">
-      <div class="brand-mark">S</div>
-      <div class="brand-name">Sitraa</div>
-    </div>
+    <div class="brand"><div class="brand-mark">S</div><div class="brand-name">Sitraa</div></div>
     <div class="progress-wrap">
       <div class="progress-label" id="progress-label">Step 1 of 9</div>
       <div class="progress-bar-outer"><div class="progress-bar-inner" id="progress-bar" style="width:11%"></div></div>
     </div>
   </div>
 
-  <!-- STEP 1 -->
-
   <div class="step active" id="step-1">
     <div class="step-eyebrow">2 minutes · Anonymous</div>
     <div class="step-title">Help us build something you actually need.</div>
     <div class="step-sub">We're building Sitraa — the UK's first digital takaful platform. Before we build anything, we want to understand your real experience with insurance as a Muslim in the UK.</div>
-    <div class="notice">🔒 Completely anonymous. No personal data is stored unless you choose to leave your email at the end.</div>
+    <div class="notice">🔒 Completely anonymous. No personal data stored unless you choose to leave your email.</div>
     <div class="options">
-      <div class="option-card selected" onclick="selectOption(this,'who','muslim')">
-        <div class="option-check"></div><div class="option-emoji">🕌</div>
-        <div class="option-text"><div class="option-label">I'm a Muslim living in the UK</div><div class="option-desc">I drive or own a home and use insurance</div></div>
-      </div>
-      <div class="option-card" onclick="selectOption(this,'who','non-muslim')">
-        <div class="option-check"></div><div class="option-emoji">🌍</div>
-        <div class="option-text"><div class="option-label">I'm not Muslim but interested in ethical finance</div><div class="option-desc">Happy to share my perspective</div></div>
-      </div>
+      <div class="option-card selected" onclick="selectOption(this,'who','Muslim living in UK')"><div class="option-check"></div><div class="option-emoji">🕌</div><div class="option-text"><div class="option-label">I'm a Muslim living in the UK</div><div class="option-desc">I drive or own a home and use insurance</div></div></div>
+      <div class="option-card" onclick="selectOption(this,'who','Non-Muslim interested in ethical finance')"><div class="option-check"></div><div class="option-emoji">🌍</div><div class="option-text"><div class="option-label">Not Muslim but interested in ethical finance</div></div></div>
     </div>
     <div class="btn-row"><button class="btn-next" onclick="nextStep(2)">Let's Begin →</button></div>
   </div>
-
-  <!-- STEP 2 -->
 
   <div class="step" id="step-2">
     <div class="step-eyebrow">Question 1 of 8</div>
@@ -183,390 +112,19 @@ body::before { content: ''; position: fixed; inset: 0; background: radial-gradie
     <div class="btn-row"><button class="btn-back" onclick="nextStep(1)">←</button><button class="btn-next" onclick="nextStep(3)">Next →</button></div>
   </div>
 
-  <!-- STEP 3 -->
-
   <div class="step" id="step-3">
     <div class="step-eyebrow">Question 2 of 8</div>
     <div class="step-title">How concerned are you about the Shariah compliance of your current insurance?</div>
     <div class="step-sub">Be honest — there's no right or wrong answer.</div>
     <div class="options">
-      <div class="option-card" onclick="selectOption(this,'concern','Very concerned — it bothers me but I have no alternative')"><div class="option-check"></div><div class="option-emoji">😟</div><div class="option-text"><div class="option-label">Very concerned</div><div class="option-desc">It bothers me but I have no alternative</div></div></div>
-      <div class="option-card" onclick="selectOption(this,'concern','Somewhat concerned — I accept it as necessary')"><div class="option-check"></div><div class="option-emoji">😐</div><div class="option-text"><div class="option-label">Somewhat concerned</div><div class="option-desc">I think about it but accept it as necessary</div></div></div>
-      <div class="option-card" onclick="selectOption(this,'concern','Not very concerned — scholars differ and I am comfortable')"><div class="option-check"></div><div class="option-emoji">🤷</div><div class="option-text"><div class="option-label">Not very concerned</div><div class="option-desc">Scholars differ on this — I'm comfortable</div></div></div>
-      <div class="option-card" onclick="selectOption(this,'concern','Not concerned — insurance is a necessity')"><div class="option-check"></div><div class="option-emoji">✅</div><div class="option-text"><div class="option-label">Not concerned at all</div><div class="option-desc">Insurance is a necessity regardless</div></div></div>
+      <div class="option-card" onclick="selectOption(this,'concern','Very concerned — no alternative')"><div class="option-check"></div><div class="option-emoji">😟</div><div class="option-text"><div class="option-label">Very concerned</div><div class="option-desc">It bothers me but I have no alternative</div></div></div>
+      <div class="option-card" onclick="selectOption(this,'concern','Somewhat concerned — accept as necessary')"><div class="option-check"></div><div class="option-emoji">😐</div><div class="option-text"><div class="option-label">Somewhat concerned</div><div class="option-desc">I think about it but accept it as necessary</div></div></div>
+      <div class="option-card" onclick="selectOption(this,'concern','Not very concerned — scholars differ')"><div class="option-check"></div><div class="option-emoji">🤷</div><div class="option-text"><div class="option-label">Not very concerned</div><div class="option-desc">Scholars differ — I'm comfortable</div></div></div>
+      <div class="option-card" onclick="selectOption(this,'concern','Not concerned — insurance is a necessity')"><div class="option-check"></div><div class="option-emoji">✅</div><div class="option-text"><div class="option-label">Not concerned at all</div></div></div>
     </div>
     <div class="btn-row"><button class="btn-back" onclick="nextStep(2)">←</button><button class="btn-next" onclick="nextStep(4)">Next →</button></div>
   </div>
 
-  <!-- STEP 4 -->
-
   <div class="step" id="step-4">
     <div class="step-eyebrow">Question 3 of 8</div>
-    <div class="step-title">Were you aware that takaful (Islamic insurance) exists?</div>
-    <div class="step-sub">Takaful is a Shariah-compliant alternative based on mutual contribution and risk sharing.</div>
-    <div class="options">
-      <div class="option-card" onclick="selectOption(this,'awareness','Yes — and I have tried to use it but found no UK option')"><div class="option-check"></div><div class="option-emoji">✅</div><div class="option-text"><div class="option-label">Yes — and I've tried to use it</div><div class="option-desc">But couldn't find a good option in the UK</div></div></div>
-      <div class="option-card" onclick="selectOption(this,'awareness','Yes — but never found a UK provider')"><div class="option-check"></div><div class="option-emoji">💡</div><div class="option-text"><div class="option-label">Yes — but never found a UK provider</div><div class="option-desc">I knew it existed but couldn't access it</div></div></div>
-      <div class="option-card" onclick="selectOption(this,'awareness','Heard the word but did not know what it meant')"><div class="option-check"></div><div class="option-emoji">🤔</div><div class="option-text"><div class="option-label">Heard the word but didn't know what it meant</div></div></div>
-      <div class="option-card" onclick="selectOption(this,'awareness','Never heard of takaful until now')"><div class="option-check"></div><div class="option-emoji">❓</div><div class="option-text"><div class="option-label">Never heard of it until now</div></div></div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="nextStep(3)">←</button><button class="btn-next" onclick="nextStep(5)">Next →</button></div>
-  </div>
-
-  <!-- STEP 5 -->
-
-  <div class="step" id="step-5">
-    <div class="step-eyebrow">Question 4 of 8</div>
-    <div class="step-title">If a genuine digital takaful product existed in the UK, how likely would you be to switch?</div>
-    <div class="step-sub">Assuming competitively priced with a great app experience.</div>
-    <div class="scale-wrap">
-      <div class="scale-labels"><span>Not at all likely</span><span>Extremely likely</span></div>
-      <div class="scale-options" id="scale-switch">
-        <div class="scale-btn" onclick="selectScale(this,'switch',1)">1</div>
-        <div class="scale-btn" onclick="selectScale(this,'switch',2)">2</div>
-        <div class="scale-btn" onclick="selectScale(this,'switch',3)">3</div>
-        <div class="scale-btn" onclick="selectScale(this,'switch',4)">4</div>
-        <div class="scale-btn" onclick="selectScale(this,'switch',5)">5</div>
-        <div class="scale-btn" onclick="selectScale(this,'switch',6)">6</div>
-        <div class="scale-btn" onclick="selectScale(this,'switch',7)">7</div>
-        <div class="scale-btn" onclick="selectScale(this,'switch',8)">8</div>
-        <div class="scale-btn" onclick="selectScale(this,'switch',9)">9</div>
-        <div class="scale-btn" onclick="selectScale(this,'switch',10)">10</div>
-      </div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="nextStep(4)">←</button><button class="btn-next" onclick="nextStep(6)">Next →</button></div>
-  </div>
-
-  <!-- STEP 6 -->
-
-  <div class="step" id="step-6">
-    <div class="step-eyebrow">Question 5 of 8</div>
-    <div class="step-title">What are your biggest frustrations with insurance as a Muslim in the UK?</div>
-    <div class="step-sub">Select all that apply.</div>
-    <div class="options" id="pain-options">
-      <div class="option-card" onclick="toggleMulti(this)"><div class="option-check"></div><div class="option-emoji">🕌</div><div class="option-text"><div class="option-label">No halal options available</div><div class="option-desc">I'm forced to use conventional insurance</div></div></div>
-      <div class="option-card" onclick="toggleMulti(this)"><div class="option-check"></div><div class="option-emoji">💸</div><div class="option-text"><div class="option-label">Conventional insurance feels haram</div><div class="option-desc">It involves riba and I'm not comfortable</div></div></div>
-      <div class="option-card" onclick="toggleMulti(this)"><div class="option-check"></div><div class="option-emoji">🔍</div><div class="option-text"><div class="option-label">Hard to find reliable Shariah guidance</div><div class="option-desc">Scholars disagree and I don't know who to trust</div></div></div>
-      <div class="option-card" onclick="toggleMulti(this)"><div class="option-check"></div><div class="option-emoji">💰</div><div class="option-text"><div class="option-label">Islamic finance products are too expensive</div><div class="option-desc">I'd switch but the price premium is too high</div></div></div>
-      <div class="option-card" onclick="toggleMulti(this)"><div class="option-check"></div><div class="option-emoji">📱</div><div class="option-text"><div class="option-label">Existing Islamic options have poor UX</div><div class="option-desc">Outdated websites, slow processes, no app</div></div></div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="nextStep(5)">←</button><button class="btn-next" onclick="nextStep(7)">Next →</button></div>
-  </div>
-
-  <!-- STEP 7 -->
-
-  <div class="step" id="step-7">
-    <div class="step-eyebrow">Question 6 of 8</div>
-    <div class="step-title">In takaful, unused contributions are returned to you as surplus. How important is this?</div>
-    <div class="step-sub">Unlike conventional insurance where the company keeps the profit, takaful returns unused funds back to you.</div>
-    <div class="options">
-      <div class="option-card" onclick="selectOption(this,'surplus','Very important — it is a key reason I would switch')"><div class="option-check"></div><div class="option-emoji">🌟</div><div class="option-text"><div class="option-label">Very important — it's a key reason I'd switch</div></div></div>
-      <div class="option-card" onclick="selectOption(this,'surplus','Nice to have — but Shariah compliance matters more')"><div class="option-check"></div><div class="option-emoji">👍</div><div class="option-text"><div class="option-label">Nice to have — but not the main reason</div></div></div>
-      <div class="option-card" onclick="selectOption(this,'surplus','Neutral — price and service matter most')"><div class="option-check"></div><div class="option-emoji">🤷</div><div class="option-text"><div class="option-label">Neutral — I just want good coverage</div></div></div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="nextStep(6)">←</button><button class="btn-next" onclick="nextStep(8)">Next →</button></div>
-  </div>
-
-  <!-- STEP 8 -->
-
-  <div class="step" id="step-8">
-    <div class="step-eyebrow">Question 7 of 8</div>
-    <div class="step-title">In your own words — what would make the perfect Islamic insurance product for you?</div>
-    <div class="step-sub">This is the most important question. Please be as honest as you like.</div>
-    <textarea class="text-input" id="open-answer" placeholder="e.g. I just want something I can trust is genuinely halal, with a decent app, and doesn't cost more than what I pay now..."></textarea>
-    <div class="btn-row"><button class="btn-back" onclick="nextStep(7)">←</button><button class="btn-next" onclick="nextStep(9)">Next →</button></div>
-  </div>
-
-  <!-- STEP 9 -->
-
-  <div class="step" id="step-9">
-    <div class="step-eyebrow">Question 8 of 8</div>
-    <div class="step-title">Want to be the first to know when Sitraa launches?</div>
-    <div class="step-sub">Completely optional. Leave your email for early access.</div>
-    <input class="text-field" id="resp-name" type="text" placeholder="Your first name (optional)">
-    <input class="text-field" id="resp-email" type="email" placeholder="Your email address (optional)">
-    <div class="notice">✉️ We'll only use this to notify you about Sitraa's launch. No spam, ever.</div>
-    <div class="btn-row">
-      <button class="btn-back" onclick="nextStep(8)">←</button>
-      <button class="btn-submit" onclick="submitSurvey()">Submit ✓</button>
-    </div>
-  </div>
-
-  <!-- THANK YOU -->
-
-  <div class="step" id="step-thanks">
-    <div class="thankyou">
-      <div class="ty-icon">🛡️</div>
-      <div class="ty-title">JazakAllah Khair</div>
-      <div class="ty-sub">Your response has been saved. You're helping build something the UK Muslim community genuinely needs.</div>
-      <div class="ty-arabic">جَزَاكَ اللَّهُ خَيْرًا</div>
-      <div class="ty-arabic-text">May Allah reward you with goodness</div>
-    </div>
-  </div>
-
-  <!-- Hidden admin access - type ?admin in URL or use secret key combo -->
-
-</div>
-</div>
-
-<!-- PASSWORD MODAL -->
-
-<div id="pw-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:999;display:none;align-items:center;justify-content:center;padding:24px;">
-  <div style="background:#111;border:1.5px solid rgba(255,255,255,0.12);border-radius:20px;padding:32px;width:100%;max-width:360px;text-align:center;">
-    <div style="font-size:32px;margin-bottom:16px;">🔐</div>
-    <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px;">Admin Access</div>
-    <div style="font-size:13px;color:#888;margin-bottom:24px;">Enter your password to view responses</div>
-    <input id="pw-input" type="password" placeholder="Password" style="width:100%;background:#171717;border:1.5px solid rgba(255,255,255,0.12);border-radius:12px;padding:14px 16px;color:#F5F3EE;font-size:15px;font-family:'DM Sans',sans-serif;outline:none;margin-bottom:12px;" onkeydown="if(event.key==='Enter')checkPassword()">
-    <div id="pw-error" style="font-size:12px;color:#FF5F5F;margin-bottom:12px;display:none;">Incorrect password</div>
-    <button onclick="checkPassword()" style="width:100%;padding:14px;background:#C8F55A;color:#080808;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px;">Enter →</button>
-    <button onclick="closePwModal()" style="width:100%;padding:10px;background:transparent;color:#888;border:1px solid rgba(255,255,255,0.1);border-radius:12px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">Cancel</button>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════ -->
-
-<!--  ADMIN VIEW                               -->
-
-<!-- ══════════════════════════════════════════ -->
-
-<div id="admin-view">
-<div class="admin-wrap">
-  <div class="admin-header">
-    <div>
-      <div class="admin-title">Sitraa · Responses</div>
-    </div>
-    <div style="display:flex;gap:8px;align-items:center">
-      <button class="clear-btn" onclick="clearResponses()">Clear all</button>
-      <button class="admin-back" onclick="showSurvey()">← Back to survey</button>
-    </div>
-  </div>
-
-  <div class="stats-grid" id="stats-grid">
-    <div class="stat-card"><div class="stat-val" id="stat-total">0</div><div class="stat-lbl">Total Responses</div></div>
-    <div class="stat-card"><div class="stat-val" id="stat-switch">—</div><div class="stat-lbl">Avg Switch Likelihood</div></div>
-    <div class="stat-card"><div class="stat-val" id="stat-emails">0</div><div class="stat-lbl">Emails Captured</div></div>
-  </div>
-
-  <div class="response-list" id="response-list"></div>
-
-</div>
-</div>
-
-<script>
-// ── ADMIN PASSWORD — change this to whatever you want ──
-const ADMIN_PASSWORD = 'sitraa2026';
-
-window.addEventListener('load', () => {
-  if (window.location.search.includes('admin') || window.location.hash === '#admin') {
-    openPwModal();
-  }
-});
-
-function openPwModal() {
-  const modal = document.getElementById('pw-modal');
-  modal.style.display = 'flex';
-  setTimeout(() => document.getElementById('pw-input').focus(), 100);
-}
-
-function closePwModal() {
-  document.getElementById('pw-modal').style.display = 'none';
-  document.getElementById('pw-input').value = '';
-  document.getElementById('pw-error').style.display = 'none';
-}
-
-function checkPassword() {
-  const val = document.getElementById('pw-input').value;
-  if (val === ADMIN_PASSWORD) {
-    closePwModal();
-    showAdmin();
-  } else {
-    document.getElementById('pw-error').style.display = 'block';
-    document.getElementById('pw-input').value = '';
-    document.getElementById('pw-input').focus();
-  }
-}
-
-// ── STATE ──
-let currentStep = 1;
-const answers = {};
-
-// ── STORAGE KEY ──
-const STORAGE_KEY = 'sitraa_survey_responses';
-
-function getResponses() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch(e) { return []; }
-}
-
-function saveResponse(resp) {
-  const responses = getResponses();
-  responses.push(resp);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(responses));
-}
-
-function clearResponses() {
-  if (confirm('Clear all responses? This cannot be undone.')) {
-    localStorage.removeItem(STORAGE_KEY);
-    renderAdmin();
-  }
-}
-
-// ── SURVEY NAV ──
-function nextStep(n) {
-  document.getElementById('step-' + currentStep).classList.remove('active');
-  currentStep = n;
-  const el = document.getElementById('step-' + n);
-  if (el) { el.classList.add('active'); el.style.animation = 'none'; requestAnimationFrame(() => el.style.animation = ''); }
-  updateProgress();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function updateProgress() {
-  const pct = Math.round((currentStep / 9) * 100);
-  document.getElementById('progress-bar').style.width = Math.min(pct, 100) + '%';
-  document.getElementById('progress-label').textContent = currentStep <= 9 ? `Step ${currentStep} of 9` : 'Complete';
-}
-
-// ── SELECTION HELPERS ──
-function selectOption(card, key, val) {
-  card.closest('.options').querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-  card.classList.add('selected');
-  answers[key] = val;
-}
-
-function toggleMulti(card) {
-  card.classList.toggle('selected');
-}
-
-function selectScale(btn, key, val) {
-  document.getElementById('scale-' + key).querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  answers[key] = val;
-}
-
-// ── COLLECT & SUBMIT ──
-function submitSurvey() {
-  // Collect insurance types
-  const chips = document.querySelectorAll('#insurance-grid .option-chip.selected');
-  answers.insurance = Array.from(chips).map(c => c.querySelector('.chip-label').textContent).join(', ') || 'None selected';
-
-  // Collect pain points
-  const pains = document.querySelectorAll('#pain-options .option-card.selected');
-  answers.painPoints = Array.from(pains).map(c => c.querySelector('.option-label').textContent).join(' | ') || 'None selected';
-
-  // Open answer
-  answers.openAnswer = document.getElementById('open-answer').value.trim() || '—';
-
-  // Contact
-  answers.name = document.getElementById('resp-name').value.trim() || '—';
-  answers.email = document.getElementById('resp-email').value.trim() || '—';
-
-  // Timestamp
-  answers.submittedAt = new Date().toLocaleString('en-GB');
-
-  // Show thanks immediately — don't make user wait
-  document.getElementById('step-9').classList.remove('active');
-  document.getElementById('step-thanks').classList.add('active');
-  document.getElementById('progress-bar').style.width = '100%';
-  document.getElementById('progress-label').textContent = 'Complete ✓';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // Send to Web3Forms — emails response to founder
-  const formData = {
-    access_key: 'b89513ab-25f0-4e9c-83c6-951f0abe0a80',
-    subject: '🛡️ Sitraa Survey Response — ' + (answers.submittedAt || ''),
-    from_name: 'Sitraa Survey',
-    'Who are they': answers.who || '—',
-    'Insurance currently held': answers.insurance || '—',
-    'Shariah concern': answers.concern || '—',
-    'Takaful awareness': answers.awareness || '—',
-    'Likelihood to switch (1-10)': answers.switch ? answers.switch + '/10' : '—',
-    'Pain points': answers.painPoints || '—',
-    'Surplus importance': answers.surplus || '—',
-    'In their own words': answers.openAnswer || '—',
-    'Name (optional)': answers.name || '—',
-    'Email (optional)': answers.email || '—',
-    'Submitted at': answers.submittedAt || '—'
-  };
-
-  fetch('https://api.web3forms.com/submit', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify(formData)
-  }).catch(() => {
-    // Silent fail — user already sees thank you screen
-  });
-}
-
-// ── VIEWS ──
-function showAdmin() {
-  document.getElementById('survey-view').classList.remove('active');
-  document.getElementById('admin-view').classList.add('active');
-  renderAdmin();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function goToAdmin() {
-  openPwModal();
-}
-
-function showSurvey() {
-  document.getElementById('admin-view').classList.remove('active');
-  document.getElementById('survey-view').classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ── RENDER ADMIN ──
-function renderAdmin() {
-  const responses = getResponses();
-  const total = responses.length;
-
-  // Stats
-  document.getElementById('stat-total').textContent = total;
-
-  const switchScores = responses.map(r => r.switch).filter(s => s);
-  const avgSwitch = switchScores.length ? (switchScores.reduce((a, b) => a + b, 0) / switchScores.length).toFixed(1) : '—';
-  document.getElementById('stat-switch').textContent = avgSwitch !== '—' ? avgSwitch + '/10' : '—';
-
-  const emails = responses.filter(r => r.email && r.email !== '—').length;
-  document.getElementById('stat-emails').textContent = emails;
-
-  // Response list
-  const listEl = document.getElementById('response-list');
-
-  if (total === 0) {
-    listEl.innerHTML = `
-      <div class="empty-state">
-        <div class="empty-icon">📭</div>
-        <div class="empty-title">No responses yet</div>
-        <p>Share the survey link and responses will appear here.</p>
-      </div>`;
-    return;
-  }
-
-  listEl.innerHTML = responses.map((r, i) => `
-    <div class="response-card">
-      <div class="response-top">
-        <span class="response-num">Response #${i + 1}</span>
-        <span class="response-time">${r.submittedAt || '—'}</span>
-      </div>
-      <div class="response-grid">
-        <div class="response-field"><div class="response-key">Who</div><div class="response-val">${r.who || '—'}</div></div>
-        <div class="response-field"><div class="response-key">Insurance held</div><div class="response-val">${r.insurance || '—'}</div></div>
-        <div class="response-field"><div class="response-key">Shariah concern</div><div class="response-val">${(r.concern || '—').split('—')[0]}</div></div>
-        <div class="response-field"><div class="response-key">Takaful awareness</div><div class="response-val">${(r.awareness || '—').substring(0,40)}${r.awareness && r.awareness.length > 40 ? '…' : ''}</div></div>
-        <div class="response-field"><div class="response-key">Switch likelihood</div><div class="response-val" style="color:var(--accent);font-size:18px;font-family:'Syne',sans-serif">${r.switch || '—'}/10</div></div>
-        <div class="response-field"><div class="response-key">Surplus importance</div><div class="response-val">${(r.surplus || '—').substring(0,40)}${r.surplus && r.surplus.length > 40 ? '…' : ''}</div></div>
-        <div class="response-field" style="grid-column:1/-1"><div class="response-key">Pain points</div><div class="response-val">${r.painPoints || '—'}</div></div>
-        ${r.email && r.email !== '—' ? `<div class="response-field" style="grid-column:1/-1;border:1px solid rgba(200,245,90,0.2)"><div class="response-key" style="color:var(--accent)">📧 Email captured</div><div class="response-val">${r.name !== '—' ? r.name + ' · ' : ''}${r.email}</div></div>` : ''}
-      </div>
-      ${r.openAnswer && r.openAnswer !== '—' ? `<div class="response-open"><strong>In their own words</strong>${r.openAnswer}</div>` : ''}
-    </div>
-  `).reverse().join('');
-}
-</script>
-
-</body>
-</html>
+    <div class="step-title">Were you aware that takaful (Islamic insurance) exists​​​​​​​​​​​​​​​​
